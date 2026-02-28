@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#060a13">
+    <title>UrbanVoice | Help & Process</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Ionicons for icons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <style>
+        .help-hero {
+            text-align: center;
+            padding: var(--space-3xl) var(--space-lg);
+            background: rgba(0, 0, 0, 0.50);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            position: relative;
+            overflow: hidden;
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
+            margin-bottom: var(--space-2xl);
+            box-shadow: var(--shadow-md);
+        }
+
+        .help-hero h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.5rem, 4vw, 4rem);
+            font-weight: 800;
+            margin-bottom: var(--space-md);
+            letter-spacing: -1px;
+        }
+
+        .help-hero p {
+            font-size: var(--step-1);
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        .help-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg) var(--space-3xl);
+            display: grid;
+            gap: var(--space-2xl);
+        }
+
+        .help-section {
+            background: rgba(0, 0, 0, 0.50);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-xl);
+            padding: var(--space-2xl);
+            box-shadow: var(--shadow-sm);
+            transition: var(--t-mid);
+            color: #ffffff;
+        }
+
+        .help-section:hover {
+            box-shadow: var(--shadow-md);
+            border-color: var(--border-medium);
+        }
+
+        .help-section h2 {
+            font-family: var(--font-heading);
+            font-size: var(--step-2);
+            color: #ffffff;
+            margin-bottom: var(--space-md);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .step-container {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+            margin-top: var(--space-lg);
+        }
+
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-md);
+            background: rgba(255, 255, 255, 0.05);
+            padding: var(--space-xl);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .step-icon {
+            flex-shrink: 0;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .step-content h3 {
+            font-family: var(--font-heading);
+            font-size: var(--step-0);
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: #ffffff;
+        }
+
+        .step-content p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: var(--step--1);
+            line-height: 1.6;
+        }
+
+        .back-nav {
+            position: absolute;
+            top: 24px;
+            left: 24px;
+            z-index: 10;
+        }
+
+        .back-nav a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            background: rgba(0, 0, 0, 0.15);
+            padding: 10px 20px;
+            border-radius: var(--radius-md);
+            transition: var(--t-fast);
+            backdrop-filter: blur(5px);
+        }
+
+        .back-nav a:hover {
+            background: rgba(0, 0, 0, 0.3);
+            transform: translateY(-1px);
+        }
+
+        /* Orbs for background decoration */
+        .hero-orb {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-orb-1 {
+            width: 300px;
+            height: 300px;
+            top: -50px;
+            right: -50px;
+        }
+
+        .hero-orb-2 {
+            width: 200px;
+            height: 200px;
+            bottom: -50px;
+            left: 20%;
+        }
+
+        .content-wrap {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="help-hero">
+        <div class="back-nav" style="display: flex; gap: 12px;">
+            <a href="index.html" title="Back to Home"><ion-icon name="arrow-back-outline"></ion-icon> Home</a>
+            <a href="aboutus.html" title="About Us"><ion-icon name="information-circle-outline"></ion-icon> About Us</a>
+        </div>
+        <div class="content-wrap">
+            <h1>How UrbanVoice Works</h1>
+            <p>From filing a grievance to getting it resolved, learn everything about using our transparent platform.
+            </p>
+        </div>
+    </div>
+
+    <div class="help-content">
+        <div class="help-section">
+            <h2><ion-icon name="map-outline"></ion-icon> The Process</h2>
+            <p>We've designed UrbanVoice to be as straightforward as possible. Follow these simple steps to bring civic
+                issues to light and track their resolution progress in real-time.</p>
+
+            <div class="step-container">
+                <div class="step-item">
+                    <div class="step-icon">
+                        <ion-icon name="log-in-outline"></ion-icon>
+                    </div>
+                    <div class="step-content">
+                        <h3>1. Secure Login & Verification</h3>
+                        <p>Begin by providing basic details such as your Full Name, Email, Phone Number, and Aadhar
+                            details. Enter the OTP to securely authenticate your identity and access your dashboard.
+                            Your privacy and verification are our priority.</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-icon">
+                        <ion-icon name="create-outline"></ion-icon>
+                    </div>
+                    <div class="step-content">
+                        <h3>2. File Your Complaint</h3>
+                        <p>Once logged in, clearly describe your issue. Optionally, provide the location address and
+                            upload supporting media such as images or videos (up to 10MB for images and 50MB for
+                            videos). Submitting comprehensive evidence speeds up the resolution.</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-icon">
+                        <ion-icon name="mail-unread-outline"></ion-icon>
+                    </div>
+                    <div class="step-content">
+                        <h3>3. Receive Registration ID</h3>
+                        <p>After submission, our system instantly assigns your grievance to the relevant authorities and
+                            provides you with a unique Registration ID. You'll need this ID to follow up on your
+                            complaint later. This Registration ID is also emailed to you for safekeeping.</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-icon">
+                        <ion-icon name="search-outline"></ion-icon>
+                    </div>
+                    <div class="step-content">
+                        <h3>4. Track Status Anytime</h3>
+                        <p>Use our real-time tracking feature on your dashboard. Simply enter your Registration ID to
+                            instantly see the current status (e.g., Pending, In Progress, Resolved) and any remarks
+                            provided by the officers reviewing your case.</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-icon">
+                        <ion-icon name="checkmark-done-circle-outline"></ion-icon>
+                    </div>
+                    <div class="step-content">
+                        <h3>5. Resolution & Feedback</h3>
+                        <p>Once your grievance reaches the "Resolved" status, the relevant local authority has
+                            officially addressed the situation. We continuously monitor officer responsiveness to keep
+                            city improvement transparent and accountable.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="help-section">
+            <h2><ion-icon name="chatbubbles-outline"></ion-icon> Frequently Asked Questions</h2>
+            <ul
+                style="margin-top: 1.5rem; padding-left: 1.5rem; display: grid; gap: 16px; color: rgba(255, 255, 255, 0.85);">
+                <li>
+                    <strong>What happens if I lose my Registration ID?</strong><br>
+                    <span style="color: rgba(255, 255, 255, 0.7); font-size: var(--step--1);">Don't worry, the unique
+                        Registration ID is immediately sent to the email address you provided during the login securely.
+                        Check your inbox to retrieve it.</span>
+                </li>
+                <li>
+                    <strong>Who looks at my complaints?</strong><br>
+                    <span style="color: rgba(255, 255, 255, 0.7); font-size: var(--step--1);">Based on your selected
+                        State
+                        and District, your complaint is routed to the corresponding department (e.g., Municipality,
+                        Water Board) equipped to handle the specific category.</span>
+                </li>
+                <li>
+                    <strong>Why is Aadhar necessary for login?</strong><br>
+                    <span style="color: rgba(255, 255, 255, 0.7); font-size: var(--step--1);">Aadhar verification
+                        minimizes
+                        spam, ensuring that government resources are efficiently allocated to legitimate issues raised
+                        by verified citizens.</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>

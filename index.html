@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#060a13">
+    <title>UrbanVoice | Complaint Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Ionicons for icons (async/defer for performance) -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" async defer></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js" async defer></script>
+</head>
+
+<body>
+
+    <!-- Background Elements Removed for Photo Background -->
+
+    <!-- Login View -->
+    <section id="login-view" class="view active">
+
+        <!-- Top Logo Bar -->
+        <header class="login-topbar" style="justify-content: space-between;">
+            <div style="display: flex; align-items: center; gap: 24px;">
+                <a href="#" id="menu-toggle-btn" onclick="openNavSidebar(event)"
+                    style="display: flex; align-items: center; gap: 4px; color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.4); font-weight: 600; font-size: var(--step--1); text-decoration: none; transition: var(--t-fast); position: relative; z-index: 100;"
+                    onmouseover="this.style.color='var(--primary-light)';" onmouseout="this.style.color='#ffffff';">
+                    <ion-icon name="menu-outline" style="font-size: 1.5rem; pointer-events: none;"></ion-icon>
+                </a>
+                <div class="login-logo" style="display: flex; align-items: center; gap: 12px;">
+                    <img src="download-removebg-preview.png" alt="UrbanVoice Logo"
+                        style="height: 64px; width: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+                    <span>Urban<strong>Voice</strong></span>
+                </div>
+            </div>
+            <nav style="display: flex; align-items: center; gap: 16px;">
+
+                <a href="help.html"
+                    style="color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.4); font-weight: 600; font-size: var(--step--1); text-decoration: none; padding: 8px 16px; border-radius: var(--radius-sm); border: 1px solid rgba(255,255,255,0.3); transition: var(--t-fast);"
+                    onmouseover="this.style.background='rgba(255,255,255,0.1)'; this.style.borderColor='#ffffff';"
+                    onmouseout="this.style.background='transparent'; this.style.borderColor='rgba(255,255,255,0.3)';">Help</a>
+                <a href="aboutus.html"
+                    style="color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.4); font-weight: 600; font-size: var(--step--1); text-decoration: none; padding: 8px 16px; border-radius: var(--radius-sm); border: 1px solid rgba(255,255,255,0.3); transition: var(--t-fast);"
+                    onmouseover="this.style.background='rgba(255,255,255,0.1)'; this.style.borderColor='#ffffff';"
+                    onmouseout="this.style.background='transparent'; this.style.borderColor='rgba(255,255,255,0.3)';">About
+                    Us</a>
+            </nav>
+        </header>
+
+        <!-- Two-Panel Body -->
+        <div class="login-body">
+
+            <!-- Left: Brand Panel -->
+            <div class="login-brand">
+                <div class="login-brand-inner">
+                    <h2>Your Voice,<br>Our Priority</h2>
+                    <p>File complaints, track progress, and see real change in your city through our transparent public
+                        redressal platform.</p>
+                    <ul class="login-features">
+                        <li><ion-icon name="checkmark-circle-outline"></ion-icon> Instant complaint registration</li>
+                        <li><ion-icon name="checkmark-circle-outline"></ion-icon> Real-time status tracking</li>
+                        <li><ion-icon name="checkmark-circle-outline"></ion-icon> Direct ministry assignment</li>
+                        <li><ion-icon name="checkmark-circle-outline"></ion-icon> Secure &amp; transparent process</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Right: Form Panel -->
+            <div class="login-form-panel">
+                <div class="login-form-box">
+                    <div class="login-form-header">
+                        <h3>Login Details</h3>
+                        <p>Public Redressal System</p>
+                    </div>
+
+                    <form id="login-form">
+
+                        <!-- Full Name -->
+                        <div class="input-group">
+                            <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+                            <input type="text" id="login-name" placeholder="Full Name" required>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="input-group">
+                            <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
+                            <input type="email" id="login-gmail" placeholder="Email ID" required>
+                        </div>
+
+                        <!-- Mobile -->
+                        <div class="input-group">
+                            <span class="icon"><ion-icon name="call-outline"></ion-icon></span>
+                            <input type="tel" id="login-phone" placeholder="Mobile Number" required>
+                        </div>
+
+                        <!-- State + District -->
+                        <div class="login-row">
+                            <div class="input-group">
+                                <input type="text" id="login-state" placeholder="State" required>
+                            </div>
+                            <div class="input-group">
+                                <input type="text" id="login-district" placeholder="District" required>
+                            </div>
+                        </div>
+
+                        <!-- Aadhar + Age -->
+                        <div class="login-row">
+                            <div class="input-group">
+                                <input type="text" id="login-aadhar" placeholder="Aadhar Number" maxlength="12"
+                                    required>
+                            </div>
+                            <div class="input-group">
+                                <input type="number" id="login-age" placeholder="Age " min="16" max="120" required>
+                            </div>
+                        </div>
+
+                        <!-- OTP -->
+                        <div class="input-group">
+                            <span class="icon"><ion-icon name="keypad-outline"></ion-icon></span>
+                            <input type="text" id="login-otp" placeholder="Enter OTP " required maxlength="6">
+                        </div>
+
+                        <button type="submit" class="btn-primary full-width">
+                            <span class="btn-text">Login</span>
+                            <ion-icon name="arrow-forward-outline"></ion-icon>
+                        </button>
+                    </form>
+                </div>
+            </div><!-- /login-form-panel -->
+
+        </div><!-- /login-body -->
+    </section>
+
+    <!-- Navigation Sidebar (Left) -->
+    <div id="nav-overlay" class="overlay hidden" style="z-index: 1000;"></div>
+    <div id="nav-sidebar" class="sidebar-left" style="z-index: 1001;">
+        <div class="sidebar-header">
+            <h2>Navigation</h2>
+            <button id="close-nav-btn" class="btn-icon">
+                <ion-icon name="close-outline"></ion-icon>
+            </button>
+        </div>
+        <div class="sidebar-content">
+            <ul class="nav-menu">
+                <li>
+                    <a href="index.html" class="active">
+                        <ion-icon name="log-in-outline"></ion-icon> Login
+                    </a>
+                </li>
+                <li>
+                    <a href="help.html">
+                        <ion-icon name="information-circle-outline"></ion-icon> Help & Process
+                    </a>
+                </li>
+                <li>
+                    <a href="aboutus.html">
+                        <ion-icon name="people-outline"></ion-icon> About Us
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast hidden"></div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - UrbanVoice</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" async defer></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js" async defer></script>
+</head>
+
+<body>
+    <!-- Dashboard View -->
+    <section id="dashboard-view"
+        style="display: block; padding: 0; opacity: 1; visibility: visible; transform: none; transition: none;">
+
+        <!-- Top Header -->
+        <header class="glass-header"
+            style="background:transparent; padding: 16px 32px; border-bottom:none; position: absolute; top: 24px; left: 0; width: 100%; z-index: 999;">
+            <div class="header-content"
+                style="max-width: 1200px; display: flex; align-items: center; justify-content: space-between;">
+
+                <div style="display: flex; align-items: center; gap: 24px;">
+                    <a href="#" id="menu-toggle-btn" onclick="openNavSidebar(event)"
+                        style="display: flex; align-items: center; gap: 4px; color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.4); font-weight: 600; font-size: var(--step--1); text-decoration: none; transition: var(--t-fast); position: relative; z-index: 100;"
+                        onmouseover="this.style.color='var(--primary-light)';" onmouseout="this.style.color='#ffffff';">
+                        <ion-icon name="menu-outline" style="font-size: 1.5rem; pointer-events: none;"></ion-icon>
+                    </a>
+                    <div class="header-logo" style="display: flex; align-items: center;">
+                        <img src="download-removebg-preview.png" alt="UrbanVoice Logo"
+                            style="height: 64px; width: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); margin-right: 12px;">
+                        <span
+                            style="font-size: clamp(2.2rem, 3vw, 3rem); color: #ffffff; text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); font-family: var(--font-heading); font-weight: 700;">Urban<strong
+                                style="font-weight:800; color:#f7f3ee; text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);">Voice</strong></span>
+                    </div>
+                </div>
+
+                <div class="header-actions" style="display: flex; align-items: center; gap: 16px;">
+                    <a href="help.html"
+                        style="color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.4); font-weight: 600; font-size: var(--step--1); text-decoration: none; padding: 8px 16px; border-radius: var(--radius-sm); border: 1px solid rgba(255,255,255,0.3); transition: var(--t-fast);"
+                        onmouseover="this.style.background='rgba(255,255,255,0.1)'; this.style.borderColor='#ffffff';"
+                        onmouseout="this.style.background='transparent'; this.style.borderColor='rgba(255,255,255,0.3)';">Help</a>
+                    <a href="aboutus.html"
+                        style="color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.4); font-weight: 600; font-size: var(--step--1); text-decoration: none; padding: 8px 16px; border-radius: var(--radius-sm); border: 1px solid rgba(255,255,255,0.3); transition: var(--t-fast);"
+                        onmouseover="this.style.background='rgba(255,255,255,0.1)'; this.style.borderColor='#ffffff';"
+                        onmouseout="this.style.background='transparent'; this.style.borderColor='rgba(255,255,255,0.3)';">About
+                        Us</a>
+                    <div
+                        style="display: flex; align-items: center; gap: 16px; border-left: 1px solid rgba(255,255,255,0.2); padding-left: 20px;">
+                        <a href="history.html" style="text-decoration:none;">
+                            <span id="header-username" class="header-user"
+                                style="background:rgba(255,255,255,0.1); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); color:#ffffff; border: 1px solid rgba(255, 255, 255, 0.3); padding: 6px 20px; border-radius: 99px; font-weight: 600; font-size: 0.95rem; cursor: pointer;"></span>
+                        </a>
+                        <button id="logout-btn" class="btn-icon" title="Logout"
+                            style="border:1px solid rgba(255, 255, 255, 0.3); border-radius:8px; padding:8px; display:flex; color:#ffffff; background:transparent;">
+                            <ion-icon name="log-out-outline" style="font-size: 1.2rem;"></ion-icon>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="container"
+            style="max-width: 1200px; padding-top: 160px; position: relative; z-index: 1; color: #ffffff;">
+
+            <!-- Complaint Form Card -->
+            <div class="form-card">
+                <div class="card-header">
+                    <h3>File a Complaint</h3>
+                    <p>Submit your grievance — it will be assigned to the relevant ministry.</p>
+                </div>
+
+                <form id="complaint-form">
+
+                    <!-- Row 1: Name + Phone -->
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label>Full Name *</label>
+                            <input type="text" id="user-name" required placeholder="Your full name">
+                        </div>
+                        <div class="input-group">
+                            <label>Mobile Number *</label>
+                            <input type="tel" id="user-phone" required placeholder="Verified number" readonly>
+                        </div>
+                    </div>
+
+                    <!-- Address -->
+                    <div class="input-group">
+                        <label>Address</label>
+                        <textarea id="user-address" placeholder="Your full address" rows="2"></textarea>
+                    </div>
+
+                    <!-- Complaint Details -->
+                    <div class="input-group">
+                        <label>Complaint Details *</label>
+                        <textarea id="user-complaint" required placeholder="Describe your issue in detail..."
+                            rows="4"></textarea>
+                    </div>
+
+                    <!-- Uploads Row -->
+                    <div class="form-row">
+                        <!-- Image Upload -->
+                        <div class="media-section">
+                            <label class="section-label">Upload Images</label>
+                            <div class="file-upload-wrapper">
+                                <input type="file" id="image-files" multiple accept="image/*">
+                                <div class="upload-trigger">
+                                    <ion-icon name="image-outline"></ion-icon>
+                                    <span>Click to Upload Images</span>
+                                    <small>JPG, PNG, WEBP — Max 10 MB each</small>
+                                </div>
+                                <div id="image-file-list" class="file-list"></div>
+                            </div>
+                        </div>
+
+                        <!-- Video Upload -->
+                        <div class="media-section">
+                            <label class="section-label">Upload Videos</label>
+                            <div class="file-upload-wrapper">
+                                <input type="file" id="video-files" multiple accept="video/*">
+                                <div class="upload-trigger">
+                                    <ion-icon name="videocam-outline"></ion-icon>
+                                    <span>Click to Upload Videos</span>
+                                    <small>MP4, MOV, AVI — Max 50 MB each</small>
+                                </div>
+                                <div id="video-file-list" class="file-list"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit -->
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary full-width">
+                            <span class="btn-text">Submit Complaint</span>
+                            <div class="loader" style="display:none;"></div>
+                        </button>
+                        <div id="responseMessage"
+                            style="display:none; margin-top: var(--space-lg); padding: var(--space-lg); background: var(--success-50); border: 1px solid rgba(16,185,129,0.2); border-radius: var(--radius-md); text-align: center;">
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+            <!-- Track Complaint Card -->
+            <div class="track-card">
+                <div class="card-header">
+                    <h3>Track Complaint</h3>
+                    <p>Enter your Registration ID to check the current status.</p>
+                </div>
+                <div class="track-row">
+                    <input type="text" id="track-registration-id"
+                        placeholder="Enter Registration ID (e.g. 20260227184137-VFKFI6)">
+                    <button type="button" id="track-btn" class="btn-primary">
+                        <ion-icon name="search-outline"></ion-icon>
+                        Track
+                    </button>
+                </div>
+            </div>
+
+        </main>
+    </section>
+
+    <!-- Overlay + Toast -->
+    <div id="overlay" class="overlay hidden"></div>
+    <div id="toast" class="toast hidden">
+        <ion-icon name="information-circle"></ion-icon>
+        <span id="toast-message">Message here</span>
+    </div>
+
+    <!-- Complaint Success Modal -->
+    <div id="success-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-icon success">
+                <ion-icon name="checkmark-circle"></ion-icon>
+            </div>
+            <h2>Complaint Filed Successfully!</h2>
+            <p>Your grievance has been recorded. Please save your Registration ID for future reference:</p>
+            <div class="registration-id-box">
+                <span id="modal-reg-id">UNKNOWN</span>
+                <button type="button" class="btn-icon btn-copy" title="Copy ID"
+                    onclick="navigator.clipboard.writeText(document.getElementById('modal-reg-id').innerText); showToast('Registration ID copied!', 'success');">
+                    <ion-icon name="copy-outline"></ion-icon>
+                </button>
+            </div>
+            <p class="modal-note">You will receive SMS updates on your registered mobile number as the issue progresses.
+            </p>
+
+            <div class="modal-actions">
+                <button type="button" id="close-modal-btn" class="btn-primary full-width">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Status Modal -->
+    <div id="status-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="sidebar-header"
+                style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eef0f2; padding-bottom: 12px; margin-bottom: 16px;">
+                <h2 style="font-size: 1.25rem; margin: 0;">Complaint Status</h2>
+                <button type="button" id="close-status-modal-btn" class="btn-icon">
+                    <ion-icon name="close-outline"></ion-icon>
+                </button>
+            </div>
+            <div id="status-body">
+                <!-- Status content injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Sidebar overlay & panel -->
+    <div id="sidebar-overlay" class="overlay hidden" style="z-index: 1000;"></div>
+    <div id="profile-sidebar" class="sidebar hidden" style="z-index: 1001;">
+        <div class="sidebar-header">
+            <h2>User Profile</h2>
+            <button id="close-sidebar-btn" class="btn-icon">
+                <ion-icon name="close-outline"></ion-icon>
+            </button>
+        </div>
+        <div class="sidebar-content">
+            <div class="profile-info-card">
+                <div class="profile-avatar">
+                    <ion-icon name="person-circle-outline"></ion-icon>
+                </div>
+                <h3 id="sidebar-user-name">Loading...</h3>
+                <p id="sidebar-user-phone">Loading...</p>
+            </div>
+
+            <div class="history-section">
+                <h3>Complaint History</h3>
+                <div id="complaint-history-list" class="history-list">
+                    <!-- History items will be dynamically injected here -->
+                    <div class="empty-history" style="text-align:center; padding: 20px; color: var(--text-muted);">
+                        No complaints filed yet.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Navigation Sidebar (Left) -->
+    <div id="nav-overlay" class="overlay hidden" style="z-index: 1000;"></div>
+    <div id="nav-sidebar" class="sidebar-left" style="z-index: 1001;">
+        <div class="sidebar-header">
+            <h2>Navigation</h2>
+            <button id="close-nav-btn" class="btn-icon">
+                <ion-icon name="close-outline"></ion-icon>
+            </button>
+        </div>
+        <div class="sidebar-content">
+            <ul class="nav-menu">
+                <li>
+                    <a href="dashboard.html" class="active">
+                        <ion-icon name="home-outline"></ion-icon> Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="#" onclick="openProfileSidebar(event)">
+                        <ion-icon name="time-outline"></ion-icon> Complaint History
+                    </a>
+                </li>
+                <li>
+                    <a href="help.html">
+                        <ion-icon name="information-circle-outline"></ion-icon> Help & Process
+                    </a>
+                </li>
+                <li>
+                    <a href="aboutus.html">
+                        <ion-icon name="people-outline"></ion-icon> About Us
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- PapaParse for parsing Google Sheets CSV -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

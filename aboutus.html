@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#060a13">
+    <title>UrbanVoice | About Us</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Ionicons for icons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <style>
+        .about-hero {
+            text-align: center;
+            padding: var(--space-3xl) var(--space-lg);
+            background: rgba(0, 0, 0, 0.50);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            position: relative;
+            overflow: hidden;
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
+            margin-bottom: var(--space-2xl);
+            box-shadow: var(--shadow-md);
+        }
+
+        .about-hero h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.5rem, 4vw, 4rem);
+            font-weight: 800;
+            margin-bottom: var(--space-md);
+            letter-spacing: -1px;
+        }
+
+        .about-hero p {
+            font-size: var(--step-1);
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        .about-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg) var(--space-3xl);
+            display: grid;
+            gap: var(--space-2xl);
+        }
+
+        .about-section {
+            background: rgba(0, 0, 0, 0.50);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-xl);
+            padding: var(--space-2xl);
+            box-shadow: var(--shadow-sm);
+            transition: var(--t-mid);
+            color: #ffffff;
+        }
+
+        .about-section:hover {
+            box-shadow: var(--shadow-md);
+            border-color: var(--border-medium);
+        }
+
+        .about-section h2 {
+            font-family: var(--font-heading);
+            font-size: var(--step-2);
+            color: #ffffff;
+            margin-bottom: var(--space-md);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-lg);
+            margin-top: var(--space-lg);
+        }
+
+        .team-member {
+            text-align: center;
+            padding: var(--space-xl) var(--space-lg);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-lg);
+            background: rgba(0, 0, 0, 0.50);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            transition: var(--t-mid);
+            color: #ffffff;
+        }
+
+        .team-member:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+            border-color: #ffffff;
+        }
+
+        .team-member ion-icon {
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin-bottom: var(--space-md);
+            display: inline-block;
+        }
+
+        .back-nav {
+            position: absolute;
+            top: 24px;
+            left: 24px;
+            z-index: 10;
+        }
+
+        .back-nav a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            background: rgba(0, 0, 0, 0.15);
+            padding: 10px 20px;
+            border-radius: var(--radius-md);
+            transition: var(--t-fast);
+            backdrop-filter: blur(5px);
+        }
+
+        .back-nav a:hover {
+            background: rgba(0, 0, 0, 0.3);
+            transform: translateY(-1px);
+        }
+
+        /* Orbs for background decoration */
+        .hero-orb {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-orb-1 {
+            width: 300px;
+            height: 300px;
+            top: -50px;
+            right: -50px;
+        }
+
+        .hero-orb-2 {
+            width: 200px;
+            height: 200px;
+            bottom: -50px;
+            left: 20%;
+        }
+
+        .content-wrap {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="about-hero">
+        <div class="back-nav" style="display: flex; gap: 12px;">
+            <a href="index.html" title="Back to Home"><ion-icon name="arrow-back-outline"></ion-icon> Home</a>
+            <a href="help.html" title="Help Process"><ion-icon name="help-circle-outline"></ion-icon> Help</a>
+        </div>
+        <div class="content-wrap">
+            <h1>About UrbanVoice</h1>
+            <p>Empowering citizens to build better cities through transparent and efficient public redressal.</p>
+        </div>
+    </div>
+
+    <div class="about-content">
+        <div class="about-section">
+            <h2><ion-icon name="eye-outline"></ion-icon> Our Vision</h2>
+            <p>We believe in cities where every citizen's voice is heard and every systemic issue is addressed
+                efficiently. UrbanVoice bridges the gap between the public and the government by offering a streamlined,
+                transparent, and direct platform for filing and tracking public grievances.</p>
+        </div>
+
+        <div class="about-section">
+            <h2><ion-icon name="rocket-outline"></ion-icon> Our Mission</h2>
+            <p>Our mission is to simplify the public redressal process. We provide real-time updates and seamless
+                integration with related ministries, ensuring that your complaints are assigned to the right authorities
+                promptly.</p>
+            <ul
+                style="margin-top: 1.5rem; padding-left: 1.5rem; display: grid; gap: 12px; color: rgba(255, 255, 255, 0.85);">
+                <li><strong>Instant Registration:</strong> Fast and reliable complaint logging with OTP validation.</li>
+                <li><strong>Direct Linkage:</strong> Automatically routed to district-level authorities for swift
+                    action.</li>
+                <li><strong>Full Transparency:</strong> A secure workflow that keeps you informed with real-time status
+                    updates.</li>
+            </ul>
+        </div>
+
+        <div class="about-section" style="border:none; padding:0; box-shadow:none; background:transparent;">
+            <h2 style="justify-content: center; margin-bottom: 0;">Our Core Values</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <ion-icon name="shield-checkmark-outline"></ion-icon>
+                    <h3>Transparency</h3>
+                    <p style="font-size: var(--step--1); margin-top: 12px; color: rgba(255, 255, 255, 0.7);">Every step
+                        of
+                        the complaint resolution process is visible and accountable.</p>
+                </div>
+                <div class="team-member">
+                    <ion-icon name="flash-outline"></ion-icon>
+                    <h3>Efficiency</h3>
+                    <p style="font-size: var(--step--1); margin-top: 12px; color: rgba(255, 255, 255, 0.7);">Our
+                        platform
+                        ensures that issues reach the right authorities instantly without paperwork.</p>
+                </div>
+                <div class="team-member">
+                    <ion-icon name="people-outline"></ion-icon>
+                    <h3>Community</h3>
+                    <p style="font-size: var(--step--1); margin-top: 12px; color: rgba(255, 255, 255, 0.7);">Empowering
+                        local communities to take charge and improve urban living together.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

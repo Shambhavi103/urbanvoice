@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Complaint History - UrbanVoice</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" async defer></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js" async defer></script>
+</head>
+
+<body
+    style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('bg_system.png') no-repeat center center fixed; background-size: cover; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); margin: 0; min-height: 100vh;">
+
+    <!-- Top Header (Matches Dashboard) -->
+    <header class="glass-header"
+        style="background:transparent; padding: 16px 32px; border-bottom:none; position: absolute; top: 24px; left: 0; width: 100%; z-index: 999;">
+        <div class="header-content"
+            style="max-width: 1200px; display: flex; align-items: center; justify-content: space-between;">
+
+            <div style="display: flex; align-items: center; gap: 24px;">
+                <div class="header-logo" style="display: flex; align-items: center;">
+                    <img src="download-removebg-preview.png" alt="UrbanVoice Logo"
+                        style="height: 64px; width: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); margin-right: 12px;">
+                    <span
+                        style="font-size: clamp(2.2rem, 3vw, 3rem); color: #ffffff; text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); font-family: var(--font-heading); font-weight: 700;">Urban<strong
+                            style="font-weight:800; color:#f7f3ee; text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);">Voice</strong></span>
+                </div>
+            </div>
+
+            <div class="header-actions" style="display: flex; align-items: center; gap: 16px;">
+                <a href="dashboard.html"
+                    style="color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.4); font-weight: 600; font-size: var(--step--1); text-decoration: none; padding: 8px 16px; border-radius: var(--radius-sm); border: 1px solid rgba(255,255,255,0.3); transition: var(--t-fast);"
+                    onmouseover="this.style.background='rgba(255,255,255,0.1)'; this.style.borderColor='#ffffff';"
+                    onmouseout="this.style.background='transparent'; this.style.borderColor='rgba(255,255,255,0.3)';">Back
+                    to Dashboard</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container" style="max-width: 1200px; padding-top: 160px; position: relative; z-index: 1;">
+        <div class="form-card"
+            style="padding: 48px; background: rgba(0, 0, 0, 0.50); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 24px; color: #ffffff;">
+
+            <div class="sidebar-header"
+                style="border-bottom: 1px solid rgba(255, 255, 255, 0.2); margin-bottom: 24px; padding-bottom: 16px;">
+                <h2>User Profile & History</h2>
+            </div>
+
+            <div class="profile-info-card"
+                style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 16px; padding: 24px; text-align: center; margin-bottom: 32px;">
+                <div class="profile-avatar" style="font-size: 4rem; color: #ffffff; margin-bottom: 12px;">
+                    <ion-icon name="person-circle-outline"></ion-icon>
+                </div>
+                <h3 id="history-page-user-name"
+                    style="color: #ffffff; font-size: 1.2rem; font-family: var(--font-heading);">Loading...</h3>
+                <p id="history-page-user-phone"
+                    style="color: rgba(255, 255, 255, 0.85); font-size: 0.95rem; margin: 0;">Loading...</p>
+            </div>
+
+            <div class="history-section">
+                <h3 style="color: #ffffff; font-size: 1.1rem; font-family: var(--font-heading); margin-bottom: 16px;">
+                    Complaint History</h3>
+                <div id="page-complaint-history-list" class="history-list"
+                    style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+                    <!-- History items will be dynamically injected here -->
+                    <div class="empty-history"
+                        style="text-align:center; padding: 20px; color: rgba(255, 255, 255, 0.7); grid-column: 1 / -1;">
+                        No complaints filed yet.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Status Modal (Needs to exist on this page for viewing details) -->
+    <div id="status-modal" class="modal hidden">
+        <div class="modal-content"
+            style="background: rgba(0, 0, 0, 0.85); color: white; border: 1px solid rgba(255,255,255,0.2);">
+            <div class="modal-header"
+                style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 12px; margin-bottom: 16px;">
+                <h2 style="font-size: 1.25rem; margin: 0; color: white;">Complaint Status</h2>
+                <button type="button" id="close-status-modal-btn" class="btn-icon"
+                    style="color: white; border-color: rgba(255,255,255,0.3);">
+                    <ion-icon name="close-outline"></ion-icon>
+                </button>
+            </div>
+            <div id="status-body">
+                <!-- Status content injected here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Inline script to handle loading history onto this page
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedUser = localStorage.getItem('currentUser');
+            let userObj = null;
+
+            if (savedUser) {
+                userObj = JSON.parse(savedUser);
+            }
+
+            if (userObj && userObj.name && userObj.phone) {
+                document.getElementById('history-page-user-name').textContent = userObj.name;
+                document.getElementById('history-page-user-phone').textContent = userObj.phone;
+                loadHistoryData(userObj.phone);
+            } else {
+                window.location.href = 'index.html'; // Redirect if not logged in
+            }
+
+            // Modal close
+            const modal = document.getElementById('status-modal');
+            document.getElementById('close-status-modal-btn').addEventListener('click', () => {
+                modal.classList.add('hidden');
+                modal.classList.remove('active');
+            });
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.add('hidden');
+                    modal.classList.remove('active');
+                }
+            });
+        });
+
+        const GOOGLE_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/1aeguSQrm9Km8e-45zYXyI0dbLcRWoB0tTTVpCpa1hco/export?format=csv';
+
+        async function loadHistoryData(phone) {
+            const listContainer = document.getElementById('page-complaint-history-list');
+
+            if (typeof Papa === 'undefined') {
+                listContainer.innerHTML = `<div class="empty-history" style="text-align:center; padding: 20px; color: var(--error); grid-column: 1 / -1;">Library failed to load. Please try refreshing.</div>`;
+                return;
+            }
+
+            try {
+                Papa.parse(GOOGLE_SHEET_CSV_URL, {
+                    download: true,
+                    header: true,
+                    complete: function (results) {
+                        const data = results.data;
+                        const userComplaints = data.filter(row => {
+                            const p = row[' phone number'] || row['phone number'] || row['phone'];
+                            return p && p.trim() === phone;
+                        });
+
+                        const mappedHistory = userComplaints.map(row => {
+                            return {
+                                regId: row['registration id'] || 'Unknown ID',
+                                date: row['time stamp'] ? row['time stamp'].split(' ')[0] : 'Unknown Date',
+                                complaint: row['text complaint'] || 'No description provided.',
+                                status: (row['status'] || 'Submitted').trim().toLowerCase(),
+                                authority: row['authorities'] || 'Pending Assignment'
+                            };
+                        });
+
+                        // Render UI
+                        if (mappedHistory.length > 0) {
+                            listContainer.innerHTML = '';
+                            const complaints = [...mappedHistory].reverse();
+
+                            complaints.forEach(item => {
+                                const div = document.createElement('div');
+                                div.className = 'history-item';
+
+                                let badgeClass = 'pending';
+                                if (item.status === 'resolved') badgeClass = 'success';
+                                else if (item.status === 'in progress') badgeClass = 'in-progress';
+
+                                div.innerHTML = `
+                                    <div class="history-header">
+                                        <span class="history-id">${item.regId}</span>
+                                        <span class="status-badge ${badgeClass}">${item.status.replace('-', ' ')}</span>
+                                    </div>
+                                    <span class="history-date"><ion-icon name="calendar-outline"></ion-icon> ${item.date}</span>
+                                    <div class="history-desc">${item.complaint}</div>
+                                `;
+
+                                div.addEventListener('click', () => showStatusModal(item));
+                                listContainer.appendChild(div);
+                            });
+                        } else {
+                            listContainer.innerHTML = `<div class="empty-history" style="text-align:center; padding: 20px; color: rgba(255, 255, 255, 0.7); grid-column: 1 / -1;">No complaints filed yet.</div>`;
+                        }
+                    },
+                    error: function (err) {
+                        console.error("Failed to parse Google Sheet:", err);
+                        listContainer.innerHTML = `<div class="empty-history" style="text-align:center; padding: 20px; color: #fbd38d; grid-column: 1 / -1;">Error loading history.</div>`;
+                    }
+                });
+            } catch (err) {
+                console.error('Error fetching history:', err);
+                listContainer.innerHTML = `<div class="empty-history" style="text-align:center; padding: 20px; color: #fbd38d; grid-column: 1 / -1;">Error loading history.</div>`;
+            }
+        }
+
+        function showStatusModal(complaint) {
+            const modal = document.getElementById('status-modal');
+            const body = document.getElementById('status-body');
+
+            // Format for dark theme
+            body.innerHTML = `
+                <div class="status-details" style="color: white; display: flex; flex-direction: column; gap: 16px;">
+                    <div class="status-row" style="background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+                        <span class="status-label" style="color: rgba(255,255,255,0.7); font-size: 0.85rem; display: block; margin-bottom: 4px;">Registration ID</span>
+                        <span class="status-value" style="font-weight: 700; font-size: 1.1rem; color: #ffffff;">${complaint.regId}</span>
+                    </div>
+                    
+                    <div class="status-row" style="background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+                        <span class="status-label" style="color: rgba(255,255,255,0.7); font-size: 0.85rem; display: block; margin-bottom: 4px;">Current Status</span>
+                        <span class="status-value" style="font-weight: 700; color: #fbd38d;">${complaint.status || 'Pending'}</span>
+                    </div>
+                    
+                    <div class="status-row" style="background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+                        <span class="status-label" style="color: rgba(255,255,255,0.7); font-size: 0.85rem; display: block; margin-bottom: 4px;">Date Filed</span>
+                        <span class="status-value" style="color: rgba(255,255,255,0.9);">${complaint.date}</span>
+                    </div>
+                    
+                    <div class="status-row full-width" style="background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+                        <span class="status-label" style="color: rgba(255,255,255,0.7); font-size: 0.85rem; display: block; margin-bottom: 4px;">Complaint Details</span>
+                        <span class="status-value" style="color: rgba(255,255,255,0.9); line-height: 1.5; display: block;">${complaint.complaint}</span>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.remove('hidden');
+            // Small delay for transition
+            setTimeout(() => modal.classList.add('active'), 10);
+        }
+    </script>
+</body>
+
+</html>
